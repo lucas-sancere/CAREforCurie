@@ -10,9 +10,7 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/data/u934/service_imagerie/v_kapoor/Fij
 
 cd /data/u934/service_imagerie/v_kapoor/anaconda2/bin
 
-#echo ". /data/u934/service_imagerie/v_kapoor/anaconda2/etc/profile.d/conda.sh" >> ~/.bashrc
-#conda activate 
-source activate tensorflow
-conda activate 3point6
-
+#conda create -n tensorflowpy3pt5 pip python=3.5
+#pip install --ignore-installed --upgrade (python3.5 version with GPU whl) 
+source activate tensorflowpy3pt5
 
