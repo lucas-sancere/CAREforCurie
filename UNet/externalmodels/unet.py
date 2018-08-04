@@ -13,7 +13,7 @@ def conv_block2(n_filter, n1, n2,
                 activation="relu",
                 border_mode="same",
                 dropout=0.0,
-                batch_norm=False,
+                batch_norm=True,
                 init="glorot_uniform",
                 ):
     def _func(lay):
@@ -29,7 +29,7 @@ def conv_block2(n_filter, n1, n2,
 
 
 
-def unet_block(n_depth=10, n_filter_base=16, n_row=3, n_col=3, n_conv_per_depth=4,
+def unet_block(n_depth=2, n_filter_base=16, n_row=3, n_col=3, n_conv_per_depth=2,
                activation="relu",
                batch_norm=True,
                dropout=0.0,
