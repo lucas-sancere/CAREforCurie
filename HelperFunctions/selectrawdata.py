@@ -3,8 +3,8 @@ from six.moves import zip
 from tifffile import imread
 from collections import namedtuple
 import os
-
-from random import shuffle
+import collections
+from random import sample
 try:
     from pathlib import Path
     Path().expanduser()
@@ -85,13 +85,17 @@ class SelectRawData(namedtuple('RawData' ,('generator' ,'size' ,'description')))
         """
         p = Path(basepath)
         image_names = [f.name for f in ( p /target_dir).glob(pattern)]
-        shuffled = shuffle(image_names)
+        
+        "Shuffle the images in the folder"
+        shuffled = sample(image_names, len(image_names))
+        
         if NumTrain is None:
             NumTrain = len(image_names)
         
+        "Select some of the shuffled imqges for a smaller training dataset"
         image_names = shuffled[:NumTrain]
         
-         NumTrain > 0 or _raise(FileNotFoundError("'target_dir' doesn't exist or didn't find any images in it."))
+        NumTrain > 0 or _raise(FileNotFoundError("'target_dir' doesn't exist or didn't find any images in it."))
         consume ((
             ( p / s /n).exists() or _raise(FileNotFoundError( p / s /n))
             for s in source_dirs for n in image_names
@@ -110,7 +114,7 @@ class SelectRawData(namedtuple('RawData' ,('generator' ,'size' ,'description')))
                 len(axes) >= x.ndim or _raise(ValueError())
                 yield x, y, axes[-x.ndim:], None
 
-        return RawData(_gen, n_images, description)
+        return SelectRawData(_gen, n_images, description)
 
 def consume(iterator):
     collections.deque(iterator, maxlen=0)
