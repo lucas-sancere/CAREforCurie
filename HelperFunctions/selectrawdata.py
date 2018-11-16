@@ -39,7 +39,7 @@ class SelectRawData(namedtuple('RawData' ,('generator' ,'size' ,'description')))
     """
 
     @staticmethod
-    def from_folder(basepath, source_dirs, target_dir, axes='CZYX', pattern='*.tif*', NumTrain = None):
+    def from_folder(basepath, source_dirs, target_dir, axes='CZYX', pattern='*.tif*', NumTrain = None, GenerateKeras=False):
         """Get pairs of corresponding TIFF images read from folders.
         Two images correspond to each other if they have the same file name, but are located in different folders.
         Parameters
@@ -117,19 +117,21 @@ class SelectRawData(namedtuple('RawData' ,('generator' ,'size' ,'description')))
         new_pair=[]
         for fx, fy in xy_name_pairs:
                 x, y = imread(str(fx)), imread(str(fy))
-                rankfourX = np.expand_dims(x, axis = -1)
-                rankfourY = np.expand_dims(y, axis = -1)
-                train_generatorX = train_datagen.flow(rankfourX, batch_size= rankfourX.shape[0], seed=1337)
-                train_generatorY=  train_datagen.flow(rankfourY,  batch_size= rankfourY.shape[0], seed=1337)
-                newX = train_generatorX.next()
-                newY = train_generatorY.next()
-                newX = newX[:,:,:,0]
-                newY = newY[:,:,:,0]
                 new_pair.append((x,y))
-                new_pair.append((newX,newY))
-                print(len(new_pair))
+                if GenerateKeras:
+                 rankfourX = np.expand_dims(x, axis = -1)
+                 rankfourY = np.expand_dims(y, axis = -1)
+                 train_generatorX = train_datagen.flow(rankfourX, batch_size= rankfourX.shape[0], seed=1337)
+                 train_generatorY=  train_datagen.flow(rankfourY,  batch_size= rankfourY.shape[0], seed=1337)
+                 newX = train_generatorX.next()
+                 newY = train_generatorY.next()
+                 newX = newX[:,:,:,0]
+                 newY = newY[:,:,:,0]
+                 
+                 new_pair.append((newX,newY))
+                
         
-        
+        print('Using Keras generator for creating a transformed image from each input')
         n_images = len(new_pair)
         description = "{p}: target='{o}', sources={s}, axes='{a}', pattern='{pt}'".format(p=basepath, s=list(source_dirs),
                                                                                         o=target_dir, a=axes, pt=pattern)
