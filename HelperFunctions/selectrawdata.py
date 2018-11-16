@@ -3,7 +3,9 @@ from six.moves import zip
 from tifffile import imread
 from collections import namedtuple
 import os
+import numpy as np
 import collections
+from keras.preprocessing.image import ImageDataGenerator
 from random import sample
 try:
     from pathlib import Path
@@ -105,11 +107,28 @@ class SelectRawData(namedtuple('RawData' ,('generator' ,'size' ,'description')))
         n_images = len(xy_name_pairs)
         description = "{p}: target='{o}', sources={s}, axes='{a}', pattern='{pt}'".format(p=basepath, s=list(source_dirs),
                                                                                         o=target_dir, a=axes, pt=pattern)
+        train_datagen = ImageDataGenerator(
+        rotation_range=20,
+        width_shift_range=0.1,
+        height_shift_range=0.1,
+        shear_range=0.5,
+        zoom_range=(0.9, 1.1),
+        horizontal_flip=True,
+        vertical_flip=True, 
+        fill_mode='constant',
+        cval=0)
 
         def _gen():
             for fx, fy in xy_name_pairs:
                 x, y = imread(str(fx)), imread(str(fy))
-                # x,y = x[:,256:-256,256:-256],y[:,256:-256,256:-256] #tmp
+                rankfourX = np.expand_dims(x, axis = -1)
+                rankfourY = np.expand_dims(y, axis = -1)
+                train_generatorX = train_datagen.flow(rankfourX, batch_size= rankfourX.shape[0], seed=1337)
+                train_generatorY=  train_datagen.flow(rankfourY,  batch_size= rankfourY.shape[0], seed=1337)
+                newX = train_generatorX.next()
+                newY = train_generatorY.next()
+                x = newX[:,:,:,0]
+                y = newY[:,:,:,0]
                 x.shape == y.shape or _raise(ValueError())
                 len(axes) >= x.ndim or _raise(ValueError())
                 yield x, y, axes[-x.ndim:], None

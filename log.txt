@@ -1,0 +1,84 @@
+[I 17:41:46.782 NotebookApp] [nb_conda_kernels] enabled, 5 kernels found
+[I 17:41:49.075 NotebookApp] [nb_anacondacloud] enabled
+[I 17:41:49.088 NotebookApp] [nb_conda] enabled
+[I 17:41:49.339 NotebookApp] \u2713 nbpresent HTML export ENABLED
+[W 17:41:49.340 NotebookApp] \u2717 nbpresent PDF export DISABLED: No module named 'nbbrowserpdf'
+[I 17:41:49.341 NotebookApp] Serving notebooks from local directory: /data/u934/service_imagerie/v_kapoor/anaconda2/bin/CSBDeep/examples/CAREforCurie
+[I 17:41:49.341 NotebookApp] The Jupyter Notebook is running at:
+[I 17:41:49.341 NotebookApp] http://localhost:8888/?token=8d3f19540b506422c2bc10f25fc067965d470878067420e0
+[I 17:41:49.341 NotebookApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
+[C 17:41:49.343 NotebookApp] 
+    
+    Copy/paste this URL into your browser when you connect for the first time,
+    to login with a token:
+        http://localhost:8888/?token=8d3f19540b506422c2bc10f25fc067965d470878067420e0
+[I 17:41:53.061 NotebookApp] Accepting one-time-token-authenticated connection from ::1
+[W 17:45:02.639 NotebookApp] 404 GET /nbextensions/nbpresent/css/nbpresent.min.css (::1) 20.90ms referer=http://localhost:8888/notebooks/denoising3D/BatchDenoising3D.ipynb
+[I 17:45:03.242 NotebookApp] Kernel started: 47cab24d-f3fd-4627-86b3-7b0ba73ddce7
+[I 17:45:05.271 NotebookApp] Adapting to protocol v5.1 for kernel 47cab24d-f3fd-4627-86b3-7b0ba73ddce7
+[I 17:45:36.905 NotebookApp] Saving file at /denoising3D/BatchDenoising3D.ipynb
+[I 17:47:03.195 NotebookApp] Saving file at /denoising3D/BatchDenoising3D.ipynb
+[I 17:59:19.756 NotebookApp] Starting buffering for 47cab24d-f3fd-4627-86b3-7b0ba73ddce7:32e4724df3914028834baa79e0e71cf8
+[I 17:59:32.518 NotebookApp] Kernel shutdown: 47cab24d-f3fd-4627-86b3-7b0ba73ddce7
+[I 18:00:10.052 NotebookApp] Saving file at /denoising3D/BatchDenoising3D.ipynb
+[E 18:00:13.168 NotebookApp] Exception restarting kernel
+    Traceback (most recent call last):
+      File "/data/u934/service_imagerie/v_kapoor/anaconda2/envs/tensorflowpy3pt5/lib/python3.5/site-packages/notebook/services/kernels/handlers.py", line 85, in post
+        yield gen.maybe_future(km.restart_kernel(kernel_id))
+      File "/data/u934/service_imagerie/v_kapoor/anaconda2/envs/tensorflowpy3pt5/lib/python3.5/site-packages/notebook/services/kernels/kernelmanager.py", line 284, in restart_kernel
+        self._check_kernel_id(kernel_id)
+      File "/data/u934/service_imagerie/v_kapoor/anaconda2/envs/tensorflowpy3pt5/lib/python3.5/site-packages/notebook/services/kernels/kernelmanager.py", line 363, in _check_kernel_id
+        raise web.HTTPError(404, u'Kernel does not exist: %s' % kernel_id)
+    tornado.web.HTTPError: HTTP 404: Not Found (Kernel does not exist: 47cab24d-f3fd-4627-86b3-7b0ba73ddce7)
+[E 18:00:13.223 NotebookApp] {
+      "User-Agent": "Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101 Firefox/52.0",
+      "Accept": "application/json, text/javascript, */*; q=0.01",
+      "Referer": "http://localhost:8888/notebooks/denoising3D/BatchDenoising3D.ipynb",
+      "Connection": "keep-alive",
+      "Cookie": "username-localhost-8888=\"2|1:0|10:1542213713|23:username-localhost-8888|44:OTRmODA2YTU4ODY5NDM0NDkyNmI4NWY1MGU2Njg3NDM=|2537d6734ecd4d77c0055a26f995333864755fc89340bbf543c84ef0a6cdd67f\"; _xsrf=2|f45330ce|36d3f44fe1f31778eceba7f668f82a77|1541159421",
+      "Accept-Language": "en-US,en;q=0.5",
+      "X-Xsrftoken": "2|f45330ce|36d3f44fe1f31778eceba7f668f82a77|1541159421",
+      "Content-Length": "0",
+      "X-Requested-With": "XMLHttpRequest",
+      "Host": "localhost:8888",
+      "Accept-Encoding": "gzip, deflate"
+    }
+[E 18:00:13.224 NotebookApp] 500 POST /api/kernels/47cab24d-f3fd-4627-86b3-7b0ba73ddce7/restart (::1) 56.47ms referer=http://localhost:8888/notebooks/denoising3D/BatchDenoising3D.ipynb
+[W 18:00:13.233 NotebookApp] 404 DELETE /api/sessions/cb1a49cb-ec13-46d8-acc5-ea3ff63a8604 (::1): Session not found: session_id='cb1a49cb-ec13-46d8-acc5-ea3ff63a8604'
+[W 18:00:13.234 NotebookApp] Session not found: session_id='cb1a49cb-ec13-46d8-acc5-ea3ff63a8604'
+[W 18:00:13.234 NotebookApp] 404 DELETE /api/sessions/cb1a49cb-ec13-46d8-acc5-ea3ff63a8604 (::1) 2.48ms referer=http://localhost:8888/notebooks/denoising3D/BatchDenoising3D.ipynb
+[I 18:00:22.107 NotebookApp] Kernel started: 28365b07-bae0-4a78-8017-d6d3b5343a6c
+[I 18:00:27.769 NotebookApp] Adapting to protocol v5.1 for kernel 28365b07-bae0-4a78-8017-d6d3b5343a6c
+2018-11-14 18:01:01.087757: I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2018-11-14 18:01:01.347844: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1392] Found device 0 with properties: 
+name: Tesla K80 major: 3 minor: 7 memoryClockRate(GHz): 0.8235
+pciBusID: 0000:86:00.0
+totalMemory: 11.17GiB freeMemory: 11.10GiB
+2018-11-14 18:01:01.502842: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1392] Found device 1 with properties: 
+name: Tesla K80 major: 3 minor: 7 memoryClockRate(GHz): 0.8235
+pciBusID: 0000:87:00.0
+totalMemory: 11.17GiB freeMemory: 11.10GiB
+2018-11-14 18:01:01.503185: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1471] Adding visible gpu devices: 0, 1
+[I 18:01:03.205 NotebookApp] Saving file at /denoising3D/BatchDenoising3D.ipynb
+2018-11-14 18:01:03.955774: I tensorflow/core/common_runtime/gpu/gpu_device.cc:952] Device interconnect StreamExecutor with strength 1 edge matrix:
+2018-11-14 18:01:03.955857: I tensorflow/core/common_runtime/gpu/gpu_device.cc:958]      0 1 
+2018-11-14 18:01:03.955872: I tensorflow/core/common_runtime/gpu/gpu_device.cc:971] 0:   N Y 
+2018-11-14 18:01:03.955881: I tensorflow/core/common_runtime/gpu/gpu_device.cc:971] 1:   Y N 
+2018-11-14 18:01:03.956693: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1084] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 10761 MB memory) -> physical GPU (device: 0, name: Tesla K80, pci bus id: 0000:86:00.0, compute capability: 3.7)
+2018-11-14 18:01:04.109576: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1084] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:1 with 10761 MB memory) -> physical GPU (device: 1, name: Tesla K80, pci bus id: 0000:87:00.0, compute capability: 3.7)
+[I 18:03:03.194 NotebookApp] Saving file at /denoising3D/BatchDenoising3D.ipynb
+[I 18:07:03.185 NotebookApp] Saving file at /denoising3D/BatchDenoising3D.ipynb
+[I 18:13:03.199 NotebookApp] Saving file at /denoising3D/BatchDenoising3D.ipynb
+[I 18:17:03.200 NotebookApp] Saving file at /denoising3D/BatchDenoising3D.ipynb
+[I 18:23:03.221 NotebookApp] Saving file at /denoising3D/BatchDenoising3D.ipynb
+[I 18:26:40.729 NotebookApp] Saving file at /denoising3D/BatchDenoising3D.ipynb
+[I 18:27:03.190 NotebookApp] Saving file at /denoising3D/BatchDenoising3D.ipynb
+[I 18:29:03.185 NotebookApp] Saving file at /denoising3D/BatchDenoising3D.ipynb
+[I 18:35:03.206 NotebookApp] Saving file at /denoising3D/BatchDenoising3D.ipynb
+[I 18:39:03.194 NotebookApp] Saving file at /denoising3D/BatchDenoising3D.ipynb
+[I 18:45:03.190 NotebookApp] Saving file at /denoising3D/BatchDenoising3D.ipynb
+[I 18:49:03.200 NotebookApp] Saving file at /denoising3D/BatchDenoising3D.ipynb
+[I 18:55:03.193 NotebookApp] Saving file at /denoising3D/BatchDenoising3D.ipynb
+[I 18:59:03.189 NotebookApp] Saving file at /denoising3D/BatchDenoising3D.ipynb
+[I 19:00:08.929 NotebookApp] Starting buffering for 28365b07-bae0-4a78-8017-d6d3b5343a6c:32e4724df3914028834baa79e0e71cf8
+[I 14:13:43.105 NotebookApp] KernelRestarter: restarting kernel (1/5), keep random ports
