@@ -104,9 +104,6 @@ class SelectRawData(namedtuple('RawData' ,('generator' ,'size' ,'description')))
         ))
         axes = axes_check_and_normalize(axes)
         xy_name_pairs = [( p / source_dir /n, p/ target_dir / n) for source_dir in source_dirs for n in image_names]
-        n_images = len(xy_name_pairs)
-        description = "{p}: target='{o}', sources={s}, axes='{a}', pattern='{pt}'".format(p=basepath, s=list(source_dirs),
-                                                                                        o=target_dir, a=axes, pt=pattern)
         train_datagen = ImageDataGenerator(
         rotation_range=20,
         width_shift_range=0.1,
@@ -117,9 +114,8 @@ class SelectRawData(namedtuple('RawData' ,('generator' ,'size' ,'description')))
         vertical_flip=True, 
         fill_mode='constant',
         cval=0)
-
-        def _gen():
-            for fx, fy in xy_name_pairs:
+        new_pair=[]
+        for fx, fy in xy_name_pairs:
                 x, y = imread(str(fx)), imread(str(fy))
                 rankfourX = np.expand_dims(x, axis = -1)
                 rankfourY = np.expand_dims(y, axis = -1)
@@ -127,13 +123,31 @@ class SelectRawData(namedtuple('RawData' ,('generator' ,'size' ,'description')))
                 train_generatorY=  train_datagen.flow(rankfourY,  batch_size= rankfourY.shape[0], seed=1337)
                 newX = train_generatorX.next()
                 newY = train_generatorY.next()
-                x = newX[:,:,:,0]
-                y = newY[:,:,:,0]
+                newX = newX[:,:,:,0]
+                newY = newY[:,:,:,0]
+                new_pair.append((x,y))
+                new_pair.append((newX,newY))
+                print(len(new_pair))
+        
+        
+        n_images = len(new_pair)
+        description = "{p}: target='{o}', sources={s}, axes='{a}', pattern='{pt}'".format(p=basepath, s=list(source_dirs),
+                                                                                        o=target_dir, a=axes, pt=pattern)
+      
+        
+        
+        def _newgen():
+            for i in range(len(new_pair)):
+                x,y = new_pair[i]
                 x.shape == y.shape or _raise(ValueError())
                 len(axes) >= x.ndim or _raise(ValueError())
+                
                 yield x, y, axes[-x.ndim:], None
-
-        return SelectRawData(_gen, n_images, description)
+       
+                
+         
+        
+        return SelectRawData(_newgen, n_images, description)
 
 def consume(iterator):
     collections.deque(iterator, maxlen=0)
