@@ -5,6 +5,7 @@ from collections import namedtuple
 import os
 import numpy as np
 import collections
+from itertools import chain
 from keras.preprocessing.image import ImageDataGenerator
 from random import sample
 try:
@@ -107,7 +108,7 @@ class SelectRawData(namedtuple('RawData' ,('generator' ,'size' ,'description')))
                 len(axes) >= x.ndim or _raise(ValueError())
                 yield x, y, axes[-x.ndim:], None
 
-        return RawData(_gen, n_images, description)
+        return SelectRawData(_gen, n_images, description)
 
     @staticmethod
     def from_folder(basepath, source_dirs, target_dir, axes='CZYX', pattern='*.tif*', NumTrain = None, GenerateKeras=False):
