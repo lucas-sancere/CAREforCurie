@@ -82,3 +82,6 @@ totalMemory: 11.17GiB freeMemory: 11.10GiB
 [I 18:59:03.189 NotebookApp] Saving file at /denoising3D/BatchDenoising3D.ipynb
 [I 19:00:08.929 NotebookApp] Starting buffering for 28365b07-bae0-4a78-8017-d6d3b5343a6c:32e4724df3914028834baa79e0e71cf8
 [I 14:13:43.105 NotebookApp] KernelRestarter: restarting kernel (1/5), keep random ports
+[C 20:48:44.189 NotebookApp] received signal 15, stopping
+[I 20:48:44.299 NotebookApp] Shutting down 1 kernel
+[I 20:48:44.339 NotebookApp] Kernel shutdown: 28365b07-bae0-4a78-8017-d6d3b5343a6c
