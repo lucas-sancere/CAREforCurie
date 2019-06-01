@@ -6,10 +6,43 @@ import json
 import collections
 from six.moves import range, zip, map, reduce, filter
 from .six import Path
+from skimage.filters import threshold_otsu
+from skimage.morphology import watershed
+from scipy import ndimage as ndi
+from skimage.morphology import remove_small_objects, binary_erosion
+from skimage.feature import peak_local_max
+from skimage.segmentation import relabel_sequential
+
+
 
 ###
 
+def MakeBinary(image):
+    
+    threshold = threshold_otsu(image)
+    binary = image > threshold
+    
+    return binary
 
+
+def WatershedBinary(binary):
+    
+     distance = ndi.distance_transform_edt(binary)
+
+
+
+     local_maxi = peak_local_max(distance, indices=False, footprint=np.ones((3, 3)),
+                            labels=binary)
+     markers = ndi.label(local_maxi)[0]
+     labels = watershed(-distance, markers, mask=binary)
+
+
+     nonormimg = remove_small_objects(labels, min_size=10, connectivity=4, in_place=False)
+     nonormimg, forward_map, inverse_map = relabel_sequential(nonormimg)    
+     labels = nonormimg
+    
+    
+     return labels
 def is_tf_backend():
     import keras.backend as K
     return K.backend() == 'tensorflow'
