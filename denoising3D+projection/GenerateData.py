@@ -1,21 +1,14 @@
-
-# coding: utf-8
-
-# In[1]:
-
-
 import sys
 sys.path.append("../HelperFunctions")
-
-from __future__ import print_function, unicode_literals, absolute_import, division
 import numpy as np
-
-import tensorflow
+import tensorflow as tf
 from tifffile import imread
 from csbdeep.utils import download_and_extract_zip_file, plot_some
 from csbdeep.data import RawData, create_patches_reduced_target
 from selectrawdata import SelectRawData
-
+import os
+os.environ["CUDA_DEVICE_ORDER"]="PCI_BUS_ID"
+os.environ["CUDA_VISIBLE_DEVICES"]="0"	
 
 # In[2]:
 
@@ -33,13 +26,13 @@ raw_data = SelectRawData.Shuffle_from_folder(
 
 
 
-X, Y, XY_axes = create_patches_reduced_target (
+X, Y, XY_axes = create_patches_reduced_target(
     raw_data            = raw_data,
     patch_size          = (None,128,128),
-    n_patches_per_image = 64,
+    n_patches_per_image = 32,
     target_axes         = 'YX',
     reduction_axes      = 'Z',
-    save_file           = '/local/u934/private/v_kapoor/ProjectionTraining/DenoisingProjection.npz',
+    save_file           = '/local/u934/private/v_kapoor/ProjectionTraining/DenoisingProjection26-128-128.npz',
 )
 
 

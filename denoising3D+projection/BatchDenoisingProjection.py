@@ -20,8 +20,8 @@ from csbdeep.models import ProjectionCARE
 # In[2]:
 
 
-basedirLow = '/local/u934/private/v_kapoor/Fl4-2-Var/dysRNAi_ECadGFPki-hetero_32pre29_bin140x_mov3/ProjectionTest/'
-basedirResults = '/local/u934/private/v_kapoor/Fl4-2-Var/dysRNAi_ECadGFPki-hetero_32pre29_bin140x_mov3/ProjectionResults/'
+basedirLow = '/local/u934/private/v_kapoor/ProjectionTraining/MasterLow/NotsoLow/'
+basedirResults = '/local/u934/private/v_kapoor/ProjectionTraining/MasterLow/NetworkProjections'
 ModelName = 'DrosophilaDenoisingProjection'
 BaseDir = '/local/u934/private/v_kapoor/CurieDeepLearningModels/'
 
