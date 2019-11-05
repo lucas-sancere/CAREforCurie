@@ -20,7 +20,7 @@ from csbdeep.models import CARE, ProjectionCARE
 # In[2]:
 
 
-masterdirLow = '/data/u934/service_imagerie/v_kapoor/Fl4-2-Var/MoreCAREing_EVvL/'
+masterdirLow = '/data/u934/service_imagerie/v_kapoor/Aude_CycE/'
 
 subdir = next(os.walk(masterdirLow))
 
@@ -71,7 +71,7 @@ for x in subdir[1]:
       
         print('Saving file' +  basedirResults3D + '%s_' + os.path.basename(fname))
 
-        restored = RestorationModel.predict(y, axes, n_tiles = (1,4,4))
+        restored = RestorationModel.predict(y, axes, n_tiles = (1,4,8))
         projection = ProjectionModel.predict(restored, axes, n_tiles = (1,2,2)) 
         axes_restored = axes.replace(ProjectionModel.proj_params.axis, '')
         save_tiff_imagej_compatible((basedirResults3D + '%s_' + 'Restored'  + os.path.basename(fname)) % RestorationModel.name, restored, axes)
