@@ -1,9 +1,26 @@
+## CARE_GenData_TrainDen_version_0_1_LS.py
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
+
 
 from __future__ import print_function, unicode_literals, absolute_import, division
+
+# In[0]:
+
+
+import os
+import time
+
+TriggerName = '/home/sancere/NextonDisk_1/TimeTrigger/TTA2'
+TimeCount = 0
+TimeThreshold = 3600*12
+while os.path.exists(TriggerName) == False and TimeCount < TimeThreshold :
+    time.sleep(60*5)
+    TimeCount = TimeCount + 60*5
+
+# In[1]:
+
 import numpy as np
 # import matplotlib.pyplot as plt
 # get_ipython().run_line_magic('matplotlib', 'inline')
@@ -20,40 +37,37 @@ from selectrawdata_copyfromhelper import SelectRawData
 # In[2]:
 
 
-# #Downsample data
-# GTdir = '/data/u934/service_imagerie/v_kapoor/CurieTrainingDatasets/Raw_Datasets/BorialisS1S2/ModelT300/GT/'
-# Lowdir =  '/data/u934/service_imagerie/v_kapoor/CurieTrainingDatasets/Raw_Datasets/BorialisS1S2/ModelT300/Low/'
-# SaveGTdir =  '/data/u934/service_imagerie/v_kapoor/CurieTrainingDatasets/Raw_Datasets/BorialisS1S2/ModelT300/GTbintwo/'
-# SaveLowdir = '/data/u934/service_imagerie/v_kapoor/CurieTrainingDatasets/Raw_Datasets/BorialisS1S2/ModelT300/Lowbintwo/'
-
-
-# SelectRawData.downsample_data(GTdir, Lowdir, SaveGTdir, SaveLowdir,pattern = '*.tif', axes = 'ZYX', downsamplefactor = 0.5, interpolationscheme = cv2.INTER_CUBIC )
-
-
-# In[5]:
-
-
 raw_data = SelectRawData.Shuffle_from_folder(
-    basepath    = '/run/user/1001/gvfs/smb-share:server=isiserver.curie.net,share=u934/equipe_bellaiche/l_sancere/Training_Data_Sets/Training_CARE_restoration/20200206_Wide_Training_CARE_40x_bin2/',
+    basepath    = '/run/user/1000/gvfs/smb-share:server=isiserver.curie.net,share=u934/equipe_bellaiche/l_sancere/Training_Data_Sets/Training_CARE_restoration/SpinwideFRAP4_Training_CARE_40x_bin2_reduced',
     source_dirs = ['Low'],
     target_dir  = 'GT',
-    axes        = 'ZYX',
-    pattern = '*TIF'
+    axes        = 'ZYX',   
+    pattern = '*.TIF'
 )
 
 
-# In[6]:
+# In[3]:
 
+patch_size = (16,64,64)
+n_patches_per_image = 64
 
 X, Y, XY_axes = create_patches (
     raw_data            = raw_data,
-    patch_size          = (16,32,32),
-    n_patches_per_image = 128,
-    save_file           = '/media/sancere/Newton_Volume_1/Npz_Files/Training_CARE_restoration_Wide_Bin2/',
+    patch_size          = patch_size,   #for bin1 it is 16 128 128 and for bin2 it is 16 64 64
+    n_patches_per_image =  n_patches_per_image,          #at least 64? 
+    save_file           = '/run/media/sancere/DATA1/Lucas_NextonCreated_npz/Training_CARE_restoration_SpinwideFRAP4_Bin2_Reduced.npz',
 )
 
 
-# In[7]:
+# In[4]:
+
+
+ConfigNPZ = open("/run/media/sancere/DATA1/Lucas_NextonCreated_npz/Parameters_Npz/ConfigNPZ_Training_CARE_restoration_SpinwideFRAP4_Bin2.txt", "w+") 
+ConfigNPZ.write("patch_size = {} \n n_patches_per_image = {}".format(patch_size,n_patches_per_image))
+ConfigNPZ.close() 
+
+
+# In[5]:
 
 
 # assert X.shape == Y.shape
@@ -61,7 +75,7 @@ X, Y, XY_axes = create_patches (
 # print("axes  of X,Y =", XY_axes)
 
 
-# # In[8]:
+# # In[6]:
 
 
 # for i in range(4):
@@ -72,13 +86,17 @@ X, Y, XY_axes = create_patches (
 # None;
 
 
-# # In[ ]:
+# In[7]:
+
+from csbdeep.utils import Path
+
+TriggerName = '/home/sancere/NextonDisk_1/TimeTrigger/TTGenDataDen1'
+Path(TriggerName).mkdir(exist_ok = True)
 
 
 
 
 
-# In[ ]:
 
 
 
