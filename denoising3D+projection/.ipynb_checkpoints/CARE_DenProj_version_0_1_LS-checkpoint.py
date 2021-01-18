@@ -63,8 +63,8 @@ os.environ["CUDA_VISIBLE_DEVICES"]="1"
 
 basedir='/run/user/1000/gvfs/smb-share:server=isiserver.curie.net,share=u934/equipe_bellaiche/a_maugarny-cales/20200709' 
 
-basedirResults3D='/run/user/1000/gvfs/smb-share:server=isiserver.curie.net,share=u934/equipe_bellaiche/a_maugarny-cales/20200709/Restored'
-basedirResults2D='/run/user/1000/gvfs/smb-share:server=isiserver.curie.net,share=u934/equipe_bellaiche/a_maugarny-cales/20200709/Projected'
+basedirResults3D= basedir + '/Restored'
+basedirResults2D=basedir + '/Projected'
 basedirResults3Dextended= basedirResults3D + '/Restored_'
 basedirResults2Dextended= basedirResults2D + '/Projected_'
 

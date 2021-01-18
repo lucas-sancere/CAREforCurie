@@ -63,10 +63,10 @@ os.environ["CUDA_VISIBLE_DEVICES"]="1"
 
 basedir='/run/user/1000/gvfs/smb-share:server=isiserver.curie.net,share=u934/equipe_bellaiche/el_alpar/201105_DfdLife/ECadGFP' 
 
-basedirResults3D='/run/user/1000/gvfs/smb-share:server=isiserver.curie.net,share=u934/equipe_bellaiche/el_alpar/201105_DfdLife/ECadGFP/Restored'
-basedirResults2D='/run/user/1000/gvfs/smb-share:server=isiserver.curie.net,share=u934/equipe_bellaiche/el_alpar/201105_DfdLife/ECadGFP/Projected'
-basedirResults3Dextended= basedirResults3D + '/Restored_'
-basedirResults2Dextended= basedirResults2D + '/Projected_'
+basedirResults3D= basedir + '/Restored'
+basedirResults2D= basedir + '/Projected'
+basedirResults3Dextended= basedirResults3D + '/Restored'
+basedirResults2Dextended= basedirResults2D + '/Projected'
 
 Model_Dir='/run/media/sancere/DATA/Lucas_Model_to_use/CARE/'
 #Test_change_email_adress_to_see_commit

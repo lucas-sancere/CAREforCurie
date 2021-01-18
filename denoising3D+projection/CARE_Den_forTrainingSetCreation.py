@@ -63,8 +63,8 @@ os.environ["CUDA_VISIBLE_DEVICES"]="0"
 
 basedir='/run/user/1000/gvfs/smb-share:server=isiserver.curie.net,share=u934/equipe_bellaiche/l_sancere/Training_Data_Sets/Training_CARE_projection/SpinwideFRAP4_Training_CARE_40x_bin2_Reduced/Low' 
 
-basedirResults3D='/run/user/1000/gvfs/smb-share:server=isiserver.curie.net,share=u934/equipe_bellaiche/l_sancere/Training_Data_Sets/Training_CARE_projection/SpinwideFRAP4_Training_CARE_40x_bin2_Reduced/Restored'
-#basedirResults2D='/run/user/1000/gvfs/smb-share:server=isiserver.curie.net,share=u934/equipe_bellaiche/l_sancere/Tests_DL_Models/One_Raw_Zstack/Projected'
+basedirResults3D= basedir + '/Restored'
+#basedirResults2D= basedir + '/Projected'
 basedirResults3Dextended= basedirResults3D + '/'
 #basedirResults2Dextended= basedirResults2D + '/Projected'
 

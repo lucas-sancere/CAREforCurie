@@ -11,7 +11,7 @@ from __future__ import print_function, unicode_literals, absolute_import, divisi
 import os
 import time
 
-TriggerName = '/home/sancere/NextonDisk_1/TimeTrigger/TTCAREMaria3'
+TriggerName = '/home/sancere/NextonDisk_1/TimeTrigger/TTCAREMFGHJK'
 TimeCount = 0
 TimeThreshold = 3600*0
 while os.path.exists(TriggerName) == False and TimeCount < TimeThreshold :
@@ -53,7 +53,7 @@ from skimage import exposure
 
 import time
 
-os.environ["CUDA_VISIBLE_DEVICES"]="1"
+os.environ["CUDA_VISIBLE_DEVICES"]="0"
 
 
 # **Movie 1**
@@ -61,12 +61,12 @@ os.environ["CUDA_VISIBLE_DEVICES"]="1"
 # In[2]:
 
 
-basedir='/run/user/1000/gvfs/smb-share:server=isiserver.curie.net,share=u934/equipe_bellaiche/m_balakireva/Maria_Movie2Lucas/Bnli3d' 
+basedir='/run/user/1000/gvfs/smb-share:server=isiserver.curie.net,share=u934/equipe_bellaiche/m_balakireva/Maria_Movie2Lucas/contN2b' 
 
-basedirResults3D='/run/user/1000/gvfs/smb-share:server=isiserver.curie.net,share=u934/equipe_bellaiche/m_balakireva/Maria_Movie2Lucas/Bnli3d/Restored'
-basedirResults2D='/run/user/1000/gvfs/smb-share:server=isiserver.curie.net,share=u934/equipe_bellaiche/m_balakireva/Maria_Movie2Lucas/Bnli3d/Projected'
-basedirResults3Dextended= basedirResults3D + '/Restored_'
-basedirResults2Dextended= basedirResults2D + '/Projected_'
+basedirResults3D= basedir + '/Restored'
+basedirResults2D= basedir + '/Projected'
+basedirResults3Dextended= basedirResults3D + '/Restored'
+basedirResults2Dextended= basedirResults2D + '/Projected'
 
 Model_Dir='/run/media/sancere/DATA/Lucas_Model_to_use/CARE/'
 

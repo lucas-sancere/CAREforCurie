@@ -64,8 +64,9 @@ os.environ["CUDA_VISIBLE_DEVICES"]="0"
 
 basedir='/run/user/1000/gvfs/smb-share:server=isiserver.curie.net,share=u934/equipe_bellaiche/a_maugarny-cales/20200729_FRAP' 
 
-basedirResults3D='/run/user/1000/gvfs/smb-share:server=isiserver.curie.net,share=u934/equipe_bellaiche/a_maugarny-cales/20200729_FRAP/Restored'
-#basedirResults2D='/run/user/1000/gvfs/smb-share:server=isiserver.curie.net,share=u934/equipe_bellaiche/l_sancere/Tests_DL_Models/One_Raw_Zstack/Projected'
+basedirResults3D= basedir + '/Restored'
+#basedirResults2D= basedir + '/Projected'
+
 basedirResults3Dextended= basedirResults3D + '/'
 #basedirResults2Dextended= basedirResults2D + '/Projected'
 

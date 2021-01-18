@@ -11,9 +11,9 @@ from __future__ import print_function, unicode_literals, absolute_import, divisi
 import os
 import time
 
-TriggerName = '/home/sancere/NextonDisk_1/TimeTrigger/TTT'
+TriggerName = '/home/sancere/NextonDisk_1/TimeTrigger/TTCAREMaria2'
 TimeCount = 0
-TimeThreshold = 3600*0
+TimeThreshold = 3600*18
 while os.path.exists(TriggerName) == False and TimeCount < TimeThreshold :
    time.sleep(60*5)
    TimeCount = TimeCount + 60*5
@@ -61,12 +61,12 @@ os.environ["CUDA_VISIBLE_DEVICES"]="0"
 # In[2]:
 
 
-basedir='/run/user/1000/gvfs/smb-share:server=isiserver.curie.net,share=u934/equipe_bellaiche/f_bosveld/CARING/dysdelta_boundary_5min_1' 
+basedir='/run/user/1000/gvfs/smb-share:server=isiserver.curie.net,share=u934/equipe_bellaiche/f_bosveld/CARING/dysRNAi_12hAPF-2-29_boundary_5min_1mov' 
 
-basedirResults3D='/run/user/1000/gvfs/smb-share:server=isiserver.curie.net,share=u934/equipe_bellaiche/f_bosveld/CARING/dysdelta_boundary_5min_1/Restored'
-basedirResults2D='/run/user/1000/gvfs/smb-share:server=isiserver.curie.net,share=u934/equipe_bellaiche/f_bosveld/CARING/dysdelta_boundary_5min_1/Projected'
-basedirResults3Dextended= basedirResults3D + '/Restored_'
-basedirResults2Dextended= basedirResults2D + '/Projected_'
+#basedirResults3D= basedir + '/Restored'
+basedirResults2D= basedir + '/Projected'
+#basedirResults3Dextended= basedirResults3D + '/Restored'
+basedirResults2Dextended= basedirResults2D + '/Projected'
 
 Model_Dir='/run/media/sancere/DATA/Lucas_Model_to_use/CARE/'
 
@@ -84,7 +84,7 @@ ProjectionModel = ProjectionCARE(config = None, name = ProjectionModel, basedir 
 # In[5]:
 
 
-Path(basedirResults3D).mkdir(exist_ok = True)
+#Path(basedirResults3D).mkdir(exist_ok = True)
 Path(basedirResults2D).mkdir(exist_ok = True)
 
 Raw_path = os.path.join(basedir, '*TIF') #tif or TIF be careful

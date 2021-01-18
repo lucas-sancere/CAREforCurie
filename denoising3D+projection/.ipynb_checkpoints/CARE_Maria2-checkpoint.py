@@ -8,16 +8,15 @@ from __future__ import print_function, unicode_literals, absolute_import, divisi
 
 # In[0]:
 
-#import os
-#import time
+import os
+import time
 
-#TriggerName = '/home/sancere/NextonDisk_1/TimeTrigger/TT3'
-#TimeCount = 0
-#TimeThreshold = 3600*2
-#while os.path.exists(TriggerName) == False and TimeCount < TimeThreshold :
-#   time.sleep(60*5)
-#   TimeCount = TimeCount + 60*5
-
+TriggerName = '/home/sancere/NextonDisk_1/TimeTrigger/TTCAREMaria1'
+TimeCount = 0
+TimeThreshold = 3600*9
+while os.path.exists(TriggerName) == False and TimeCount < TimeThreshold :
+   time.sleep(60*5)
+   TimeCount = TimeCount + 60*5
 
 
 
@@ -62,32 +61,31 @@ os.environ["CUDA_VISIBLE_DEVICES"]="0"
 # In[2]:
 
 
-basedir='/run/user/1000/gvfs/smb-share:server=isiserver.curie.net,share=u934/equipe_bellaiche/a_maugarny-cales/20200729_FRAP' 
+basedir='/run/user/1000/gvfs/smb-share:server=isiserver.curie.net,share=u934/equipe_bellaiche/m_balakireva/Maria_Movie2Lucas/Nts11' 
 
 basedirResults3D= basedir + '/Restored'
-#basedirResults2D= basedir + '/Projected'
+basedirResults2D= basedir + '/Projected'
+basedirResults3Dextended= basedirResults3D + '/Restored'
+basedirResults2Dextended= basedirResults2D + '/Projected'
 
-basedirResults3Dextended= basedirResults3D + '/'
-#basedirResults2Dextended= basedirResults2D + '/Projected'
-
-Model_Dir='/run/media/sancere/DATA1/Lucas_NextonCreated_npz/'
+Model_Dir='/run/media/sancere/DATA/Lucas_Model_to_use/CARE/'
 
 
 # In[3]:
 
 
-RestorationModel ='Training_CARE_restoration_SpinwideFRAP4_Bin2'
-#ProjectionModel ='CARE_projection_Borealis_Bin1'
+RestorationModel = 'CARE_restoration_SpinWideFRAP4_Bin1_3Gfp'
+ProjectionModel ='CARE_projection_SpinWideFRAP4_Bin1_3Gfp'
 
 RestorationModel = CARE(config = None, name = RestorationModel, basedir = Model_Dir)
-#ProjectionModel = ProjectionCARE(config = None, name = ProjectionModel, basedir = Model_Dir) 
+ProjectionModel = ProjectionCARE(config = None, name = ProjectionModel, basedir = Model_Dir) 
 
 
 # In[5]:
 
 
 Path(basedirResults3D).mkdir(exist_ok = True)
-#Path(basedirResults2D).mkdir(exist_ok = True)
+Path(basedirResults2D).mkdir(exist_ok = True)
 
 Raw_path = os.path.join(basedir, '*TIF') #tif or TIF be careful
 
@@ -101,17 +99,17 @@ filesRaw = glob.glob(Raw_path)
 
 for fname in filesRaw:
        if  os.path.exists(fname) == True :
-            if  os.path.exists(basedirResults3Dextended + os.path.basename(fname)) == False : #os.path.exists(basedirResults2Dextended + '_' + os.path.basename(fname)) == False  or
+            if  os.path.exists(basedirResults3Dextended + os.path.basename(fname)) == False or os.path.exists(basedirResults2Dextended + '_' + os.path.basename(fname)) == False :
                 print(fname)
                 y = imread(fname)
                 restored = RestorationModel.predict(y, axes, n_tiles = (1,2,4)) #n_tiles is for the decomposition of the image in (z,y,x). (1,2,2) will work with light images. Less tiles we have, faster the calculation is 
-                #projection = ProjectionModel.predict(restored, axes, n_tiles = (1,1,1)) #n_tiles is for the decomposition of the image in (z,y,x). There is overlapping in the decomposition wich is managed by the program itself
-                #axes_restored = axes.replace(ProjectionModel.proj_params.axis, '')
-                #restored = restored.astype('uint8') # if prediction and projection running at the same time
-                restored = restored.astype('uint16') # if projection training set creation or waiting for a future projection 
-                #projection = projection.astype('uint8')
+                projection = ProjectionModel.predict(restored, axes, n_tiles = (1,1,1)) #n_tiles is for the decomposition of the image in (z,y,x). There is overlapping in the decomposition wich is managed by the program itself
+                axes_restored = axes.replace(ProjectionModel.proj_params.axis, '')
+                restored = restored.astype('uint8') # if prediction and projection running at the same time
+                #restored = restored.astype('uint16') # if projection training set creation or waiting for a future projection 
+                projection = projection.astype('uint8')
                 save_tiff_imagej_compatible((basedirResults3Dextended  + os.path.basename(fname)) , restored, axes)
-                #save_tiff_imagej_compatible((basedirResults2Dextended + '_' + os.path.basename(fname)) , projection, axes_restored)
+                save_tiff_imagej_compatible((basedirResults2Dextended + '_' + os.path.basename(fname)) , projection, axes_restored)
 
 
 # In[]:
@@ -119,15 +117,8 @@ for fname in filesRaw:
 
 from csbdeep.utils import Path
 
-TriggerName = '/home/sancere/NextonDisk_1/TimeTrigger/TTDen1'
+TriggerName = '/home/sancere/NextonDisk_1/TimeTrigger/TTCAREMaria2'
 Path(TriggerName).mkdir(exist_ok = True)
-
-
-
-
-
-
-
 
 
 

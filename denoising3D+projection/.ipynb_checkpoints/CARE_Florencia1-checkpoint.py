@@ -63,10 +63,10 @@ os.environ["CUDA_VISIBLE_DEVICES"]="1"
 
 basedir='/run/user/1000/gvfs/smb-share:server=isiserver.curie.net,share=u934/equipe_bellaiche/mf_di-pietro/2020_9_29_cadmkate_gal4light-local__uascyclE-careconditions_40x_bin1_5min/movies/pupe1' 
 
-basedirResults3D='/run/user/1000/gvfs/smb-share:server=isiserver.curie.net,share=u934/equipe_bellaiche/mf_di-pietro/2020_9_29_cadmkate_gal4light-local__uascyclE-careconditions_40x_bin1_5min/movies/pupe1/Restored'
-basedirResults2D='/run/user/1000/gvfs/smb-share:server=isiserver.curie.net,share=u934/equipe_bellaiche/mf_di-pietro/2020_9_29_cadmkate_gal4light-local__uascyclE-careconditions_40x_bin1_5min/movies/pupe1/Projected'
-basedirResults3Dextended= basedirResults3D + '/Restored_'
-basedirResults2Dextended= basedirResults2D + '/Projected_'
+basedirResults3D= basedir + '/Restored'
+basedirResults2D= basedir + '/Projected'
+basedirResults3Dextended= basedirResults3D + '/Restored'
+basedirResults2Dextended= basedirResults2D + '/Projected'
 
 Model_Dir='/run/media/sancere/DATA1/Lucas_Model_to_use/CARE/'
 

@@ -11,9 +11,9 @@ from __future__ import print_function, unicode_literals, absolute_import, divisi
 import os
 import time
 
-TriggerName = '/home/sancere/NextonDisk_1/TimeTrigger/TTAude1'
+TriggerName = '/home/sancere/NextonDisk_1/TimeTrigger/TTMEMEME'
 TimeCount = 0
-TimeThreshold = 3600*6
+TimeThreshold = 3600*0
 while os.path.exists(TriggerName) == False and TimeCount < TimeThreshold :
    time.sleep(60*5)
    TimeCount = TimeCount + 60*5
@@ -53,7 +53,7 @@ from skimage import exposure
 
 import time
 
-os.environ["CUDA_VISIBLE_DEVICES"]="0"
+os.environ["CUDA_VISIBLE_DEVICES"]="1"
 
 
 # **Movie 1**
@@ -61,12 +61,12 @@ os.environ["CUDA_VISIBLE_DEVICES"]="0"
 # In[2]:
 
 
-basedir='/run/user/1000/gvfs/smb-share:server=isiserver.curie.net,share=u934/equipe_bellaiche/a_maugarny-cales/20201203' 
+basedir='/run/user/1000/gvfs/smb-share:server=isiserver.curie.net,share=u934/equipe_bellaiche/m_gracia/20201216_-_compression_cad3xGFP_40x' 
 
-basedirResults3D='/run/user/1000/gvfs/smb-share:server=isiserver.curie.net,share=u934/equipe_bellaiche/a_maugarny-cales/20201203/Restored'
-basedirResults2D='/run/user/1000/gvfs/smb-share:server=isiserver.curie.net,share=u934/equipe_bellaiche/a_maugarny-cales/20201203/Projected'
-basedirResults3Dextended= basedirResults3D + '/Restored_'
-basedirResults2Dextended= basedirResults2D + '/Projected_'
+basedirResults3D= basedir + '/Restored'
+basedirResults2D= basedir + '/Projected'
+basedirResults3Dextended= basedirResults3D + '/Restored'
+basedirResults2Dextended= basedirResults2D + '/Projected'
 
 Model_Dir='/run/media/sancere/DATA/Lucas_Model_to_use/CARE/'
 
@@ -99,7 +99,7 @@ filesRaw = glob.glob(Raw_path)
 
 for fname in filesRaw:
        if  os.path.exists(fname) == True :
-            if  os.path.exists(basedirResults2Dextended + '_' + os.path.basename(fname)) == False :
+            if  os.path.exists(basedirResults3Dextended + os.path.basename(fname)) == False or os.path.exists(basedirResults2Dextended + '_' + os.path.basename(fname)) == False :
                 print(fname)
                 y = imread(fname)
                 restored = RestorationModel.predict(y, axes, n_tiles = (1,2,4)) #n_tiles is for the decomposition of the image in (z,y,x). (1,2,2) will work with light images. Less tiles we have, faster the calculation is 
@@ -108,7 +108,7 @@ for fname in filesRaw:
                 restored = restored.astype('uint8') # if prediction and projection running at the same time
                 #restored = restored.astype('uint16') # if projection training set creation or waiting for a future projection 
                 projection = projection.astype('uint8')
-                #save_tiff_imagej_compatible((basedirResults3Dextended  + os.path.basename(fname)) , restored, axes)
+                save_tiff_imagej_compatible((basedirResults3Dextended  + os.path.basename(fname)) , restored, axes)
                 save_tiff_imagej_compatible((basedirResults2Dextended + '_' + os.path.basename(fname)) , projection, axes_restored)
 
 
@@ -117,7 +117,7 @@ for fname in filesRaw:
 
 from csbdeep.utils import Path
 
-TriggerName = '/home/sancere/NextonDisk_1/TimeTrigger/TTAude2'
+TriggerName = '/home/sancere/NextonDisk_1/TimeTrigger/TTCAREMaria1'
 Path(TriggerName).mkdir(exist_ok = True)
 
 
