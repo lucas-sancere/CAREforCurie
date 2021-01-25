@@ -11,9 +11,9 @@ from __future__ import print_function, unicode_literals, absolute_import, divisi
 import os
 import time
 
-TriggerName = '/home/sancere/NextonDisk_1/TimeTrigger/TTMEMEME'
+TriggerName = '/home/sancere/NextonDisk_1/TimeTrigger/TTAude1'
 TimeCount = 0
-TimeThreshold = 3600*0
+TimeThreshold = 3600*8
 while os.path.exists(TriggerName) == False and TimeCount < TimeThreshold :
    time.sleep(60*5)
    TimeCount = TimeCount + 60*5
@@ -96,7 +96,9 @@ filesRaw = glob.glob(Raw_path)
 
 # In[6]:
 
-
+timize_thresholds' to change that.)
+Using default values: prob_thresh=0.5, nms_thresh=0.4.
+Processing file /run/user/1000/gvfs/smb-share:server=isiserver.curie.net,share=u934/equipe_bellaiche/m_balakireva/Maria_Movie2Lucas/Ni1a/201217_Ni_mov1a_cadGfp/Rotated/201217_Ni_mov1a_cadGfp_0079.tif
 for fname in filesRaw:
        if  os.path.exists(fname) == True :
             if  os.path.exists(basedirResults3Dextended + os.path.basename(fname)) == False or os.path.exists(basedirResults2Dextended + '_' + os.path.basename(fname)) == False :
@@ -105,7 +107,7 @@ for fname in filesRaw:
                 restored = RestorationModel.predict(y, axes, n_tiles = (1,2,4)) #n_tiles is for the decomposition of the image in (z,y,x). (1,2,2) will work with light images. Less tiles we have, faster the calculation is 
                 projection = ProjectionModel.predict(restored, axes, n_tiles = (1,1,1)) #n_tiles is for the decomposition of the image in (z,y,x). There is overlapping in the decomposition wich is managed by the program itself
                 axes_restored = axes.replace(ProjectionModel.proj_params.axis, '')
-                restored = restored.astype('uint8') # if prediction and projection running at the same time
+                #restored = restored.astype('uint8') # if prediction and projection running at the same time
                 #restored = restored.astype('uint16') # if projection training set creation or waiting for a future projection 
                 projection = projection.astype('uint8')
                 save_tiff_imagej_compatible((basedirResults3Dextended  + os.path.basename(fname)) , restored, axes)

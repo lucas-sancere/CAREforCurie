@@ -13,7 +13,7 @@ import time
 
 TriggerName = '/home/sancere/NextonDisk_1/TimeTrigger/TTCAREMaria2'
 TimeCount = 0
-TimeThreshold = 3600*18
+TimeThreshold = 3600*0
 while os.path.exists(TriggerName) == False and TimeCount < TimeThreshold :
    time.sleep(60*5)
    TimeCount = TimeCount + 60*5
@@ -53,7 +53,7 @@ from skimage import exposure
 
 import time
 
-os.environ["CUDA_VISIBLE_DEVICES"]="0"
+os.environ["CUDA_VISIBLE_DEVICES"]="1"
 
 
 # **Movie 1**
@@ -61,7 +61,7 @@ os.environ["CUDA_VISIBLE_DEVICES"]="0"
 # In[2]:
 
 
-basedir='/run/user/1000/gvfs/smb-share:server=isiserver.curie.net,share=u934/equipe_bellaiche/f_bosveld/CARING/dysRNAi_12hAPF-2-29_boundary_5min_1mov' 
+basedir='/run/user/1000/gvfs/smb-share:server=isiserver.curie.net,share=u934/equipe_bellaiche/f_bosveld/CARING/opto_bottom_MBSRnai_1' 
 
 #basedirResults3D= basedir + '/Restored'
 basedirResults2D= basedir + '/Projected'
@@ -74,8 +74,8 @@ Model_Dir='/run/media/sancere/DATA/Lucas_Model_to_use/CARE/'
 # In[3]:
 
 
-RestorationModel = 'CARE_restoration_SpinWideFRAP4_Bin1'
-ProjectionModel ='CARE_projection_SpinWideFRAP4_Bin1'
+RestorationModel = 'CARE_restoration_SpinWideFRAP4_Bin1_3Kate_Lowlaser'
+ProjectionModel ='CARE_projection_SpinWideFRAP4_Bin1_3Kate_Lowlaser'
 
 RestorationModel = CARE(config = None, name = RestorationModel, basedir = Model_Dir)
 ProjectionModel = ProjectionCARE(config = None, name = ProjectionModel, basedir = Model_Dir) 

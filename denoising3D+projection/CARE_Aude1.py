@@ -11,9 +11,9 @@ from __future__ import print_function, unicode_literals, absolute_import, divisi
 import os
 import time
 
-TriggerName = '/home/sancere/NextonDisk_1/TimeTrigger/TTTT'
+TriggerName = '/home/sancere/NextonDisk_1/TimeTrigger/TTFloris4'
 TimeCount = 0
-TimeThreshold = 3600*0
+TimeThreshold = 3600*24
 while os.path.exists(TriggerName) == False and TimeCount < TimeThreshold :
    time.sleep(60*5)
    TimeCount = TimeCount + 60*5
@@ -74,9 +74,9 @@ Model_Dir='/run/media/sancere/DATA/Lucas_Model_to_use/CARE/'
 # In[3]:
 
 
-RestorationModel = 'CARE_restoration_Borealis_Bin2'
-ProjectionModel ='CARE_projection_Borealis_Bin2'
-20201211
+RestorationModel = 'CARE_restoration_SpinWideFRAP4_Bin2'
+ProjectionModel ='CARE_projection_SpinWideFRAP4_Bin2'
+
 RestorationModel = CARE(config = None, name = RestorationModel, basedir = Model_Dir)
 ProjectionModel = ProjectionCARE(config = None, name = ProjectionModel, basedir = Model_Dir) 
 
