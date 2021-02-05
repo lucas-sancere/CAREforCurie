@@ -11,7 +11,7 @@ from __future__ import print_function, unicode_literals, absolute_import, divisi
 import os
 import time
 
-TriggerName = '/home/sancere/NextonDisk_1/TimeTrigger/TTCAREMaria2'
+TriggerName = '/home/sancere/NextonDisk_1/TimeTrigger/TTFloris3'
 TimeCount = 0
 TimeThreshold = 3600*0
 while os.path.exists(TriggerName) == False and TimeCount < TimeThreshold :
@@ -61,7 +61,7 @@ os.environ["CUDA_VISIBLE_DEVICES"]="1"
 # In[2]:
 
 
-basedir='/run/user/1000/gvfs/smb-share:server=isiserver.curie.net,share=u934/equipe_bellaiche/f_bosveld/CARING/opto_bottom_MBSRnai_1' 
+basedir='/run/user/1000/gvfs/smb-share:server=isiserver.curie.net,share=u934/equipe_bellaiche/f_bosveld/CARING/opto_2P230ptROI-center_ZipDNYFP_1' 
 
 #basedirResults3D= basedir + '/Restored'
 basedirResults2D= basedir + '/Projected'
@@ -120,7 +120,7 @@ for fname in filesRaw:
 
 from csbdeep.utils import Path
 
-TriggerName = '/home/sancere/NextonDisk_1/TimeTrigger/TTFloris1'
+TriggerName = '/home/sancere/NextonDisk_1/TimeTrigger/TTFloris4'
 Path(TriggerName).mkdir(exist_ok = True)
 
 

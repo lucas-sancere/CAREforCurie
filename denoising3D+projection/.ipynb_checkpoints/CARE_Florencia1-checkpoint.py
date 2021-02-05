@@ -13,7 +13,7 @@ import time
 
 TriggerName = '/home/sancere/NextonDisk_1/TimeTrigger/TTYo1'
 TimeCount = 0
-TimeThreshold = 3600*1
+TimeThreshold = 3600*0
 while os.path.exists(TriggerName) == False and TimeCount < TimeThreshold :
    time.sleep(60*5)
    TimeCount = TimeCount + 60*5
@@ -61,14 +61,14 @@ os.environ["CUDA_VISIBLE_DEVICES"]="1"
 # In[2]:
 
 
-basedir='/run/user/1000/gvfs/smb-share:server=isiserver.curie.net,share=u934/equipe_bellaiche/mf_di-pietro/2020_9_29_cadmkate_gal4light-local__uascyclE-careconditions_40x_bin1_5min/movies/pupe1' 
+basedir='/run/user/1000/gvfs/smb-share:server=isiserver.curie.net,share=u934/equipe_bellaiche/mf_di-pietro/Florencia_to_Lucas/DegrFP-Data_for_segmentation-correction_or_measurement/27-8-8hr_after/Regions_of_interests_cropped/ToProject' 
 
 basedirResults3D= basedir + '/Restored'
 basedirResults2D= basedir + '/Projected'
 basedirResults3Dextended= basedirResults3D + '/Restored'
 basedirResults2Dextended= basedirResults2D + '/Projected'
 
-Model_Dir='/run/media/sancere/DATA1/Lucas_Model_to_use/CARE/'
+Model_Dir='/run/media/sancere/DATA/Lucas_Model_to_use/CARE/'
 
 
 # In[3]:
@@ -87,7 +87,7 @@ ProjectionModel = ProjectionCARE(config = None, name = ProjectionModel, basedir 
 Path(basedirResults3D).mkdir(exist_ok = True)
 Path(basedirResults2D).mkdir(exist_ok = True)
 
-Raw_path = os.path.join(basedir, '*TIF') #tif or TIF be careful
+Raw_path = os.path.join(basedir, '*.tif') #tif or TIF be careful
 
 axes = 'ZYX'  #projection axes : 'YX'
 

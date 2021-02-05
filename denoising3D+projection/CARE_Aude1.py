@@ -11,9 +11,9 @@ from __future__ import print_function, unicode_literals, absolute_import, divisi
 import os
 import time
 
-TriggerName = '/home/sancere/NextonDisk_1/TimeTrigger/TTFloris4'
+TriggerName = '/home/sancere/NextonDisk_1/TimeTrigger/TTSegYoAgain'
 TimeCount = 0
-TimeThreshold = 3600*24
+TimeThreshold = 3600*0
 while os.path.exists(TriggerName) == False and TimeCount < TimeThreshold :
    time.sleep(60*5)
    TimeCount = TimeCount + 60*5
@@ -53,7 +53,7 @@ from skimage import exposure
 
 import time
 
-os.environ["CUDA_VISIBLE_DEVICES"]="1"
+os.environ["CUDA_VISIBLE_DEVICES"]="0"
 
 
 # **Movie 1**
@@ -61,7 +61,7 @@ os.environ["CUDA_VISIBLE_DEVICES"]="1"
 # In[2]:
 
 
-basedir = '/run/user/1000/gvfs/smb-share:server=isiserver.curie.net,share=u934/equipe_bellaiche/a_maugarny-cales/20210118_Borealis' 
+basedir = '/run/user/1000/gvfs/smb-share:server=isiserver.curie.net,share=u934/equipe_bellaiche/a_maugarny-cales/20210129_WIDE' 
 
 basedirResults3D=  basedir + '/Restored'
 basedirResults2D=  basedir + '/Projected'
@@ -74,8 +74,8 @@ Model_Dir='/run/media/sancere/DATA/Lucas_Model_to_use/CARE/'
 # In[3]:
 
 
-RestorationModel = 'CARE_restoration_SpinWideFRAP4_Bin2'
-ProjectionModel ='CARE_projection_SpinWideFRAP4_Bin2'
+RestorationModel = 'CARE_restoration_WideNewFiber1_Bin2'
+ProjectionModel ='CARE_projection_WideNewFiber1_Bin2'
 
 RestorationModel = CARE(config = None, name = RestorationModel, basedir = Model_Dir)
 ProjectionModel = ProjectionCARE(config = None, name = ProjectionModel, basedir = Model_Dir) 

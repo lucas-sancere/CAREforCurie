@@ -1,0 +1,24 @@
+2019-07-09 17:15:33.108653: I tensorflow/core/platform/cpu_feature_guard.cc:140] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2019-07-09 17:15:33.304779: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1212] Found device 0 with properties: 
+name: Tesla K80 major: 3 minor: 7 memoryClockRate(GHz): 0.8235
+pciBusID: 0000:86:00.0
+totalMemory: 11.17GiB freeMemory: 426.56MiB
+2019-07-09 17:15:33.523360: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1212] Found device 1 with properties: 
+name: Tesla K80 major: 3 minor: 7 memoryClockRate(GHz): 0.8235
+pciBusID: 0000:87:00.0
+totalMemory: 11.17GiB freeMemory: 506.44MiB
+2019-07-09 17:15:33.523640: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1227] Device peer to peer matrix
+2019-07-09 17:15:33.523699: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1233] DMA: 0 1 
+2019-07-09 17:15:33.523717: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1243] 0:   Y Y 
+2019-07-09 17:15:33.523727: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1243] 1:   Y Y 
+2019-07-09 17:15:33.523746: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1312] Adding visible gpu devices: 0, 1
+2019-07-09 17:15:34.227181: I tensorflow/core/common_runtime/gpu/gpu_device.cc:993] Creating TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 163 MB memory) -> physical GPU (device: 0, name: Tesla K80, pci bus id: 0000:86:00.0, compute capability: 3.7)
+2019-07-09 17:15:34.231981: I tensorflow/core/common_runtime/gpu/gpu_device.cc:993] Creating TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:1 with 243 MB memory) -> physical GPU (device: 1, name: Tesla K80, pci bus id: 0000:87:00.0, compute capability: 3.7)
+Using TensorFlow backend.
+Loading network weights from 'weights_best.h5'.
+Loading network weights from 'weights_best.h5'.
+Exception ignored in: <bound method BaseSession.__del__ of <tensorflow.python.client.session.Session object at 0x7fc00895d320>>
+Traceback (most recent call last):
+  File "/data/u934/service_imagerie/v_kapoor/anaconda2/envs/tensorflowLOW/lib/python3.5/site-packages/tensorflow/python/client/session.py", line 712, in __del__
+  File "/data/u934/service_imagerie/v_kapoor/anaconda2/envs/tensorflowLOW/lib/python3.5/site-packages/tensorflow/python/framework/c_api_util.py", line 31, in __init__
+TypeError: 'NoneType' object is not callable
