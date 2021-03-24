@@ -11,7 +11,7 @@ from __future__ import print_function, unicode_literals, absolute_import, divisi
 import os
 import time
 
-TriggerName = '/home/sancere/NextonDisk_1/TimeTrigger/TTTEGEVUIVE'
+TriggerName = '/home/sancere/NextonDisk_1/TimeTrigger/TTAude1'
 TimeCount = 0
 TimeThreshold = 3600*0
 while os.path.exists(TriggerName) == False and TimeCount < TimeThreshold :
@@ -61,7 +61,7 @@ os.environ["CUDA_VISIBLE_DEVICES"]="0"
 # In[2]:
 
 
-basedir='/run/user/1000/gvfs/smb-share:server=isiserver.curie.net,share=u934/equipe_bellaiche/m_gracia/20210316/partie1' 
+basedir='/run/user/1000/gvfs/smb-share:server=isiserver.curie.net,share=u934/equipe_bellaiche/m_gracia/20210130_compression/pupe1' 
 
 basedirResults3D= basedir + '/Restored'
 basedirResults2D= basedir + '/Projected'

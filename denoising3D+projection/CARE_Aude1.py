@@ -61,7 +61,7 @@ os.environ["CUDA_VISIBLE_DEVICES"]="0"
 # In[2]:
 
 
-basedir = '/run/user/1000/gvfs/smb-share:server=isiserver.curie.net,share=u934/equipe_bellaiche/a_maugarny-cales/20210129_WIDE' 
+basedir = '/run/user/1000/gvfs/smb-share:server=isiserver.curie.net,share=u934/equipe_bellaiche/a_maugarny-cales/20210315' 
 
 basedirResults3D=  basedir + '/Restored'
 basedirResults2D=  basedir + '/Projected'
@@ -84,7 +84,7 @@ ProjectionModel = ProjectionCARE(config = None, name = ProjectionModel, basedir 
 # In[5]:
 
 
-Path(basedirResults3D).mkdir(exist_ok = True)
+#Path(basedirResults3D).mkdir(exist_ok = True)
 Path(basedirResults2D).mkdir(exist_ok = True)
 
 Raw_path = os.path.join(basedir, '*TIF') #tif or TIF be careful
@@ -114,7 +114,6 @@ for fname in filesRaw:
 
 # In[]:
 
-print('haha')
 
 from csbdeep.utils import Path
 

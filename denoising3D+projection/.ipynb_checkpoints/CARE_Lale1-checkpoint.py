@@ -13,7 +13,7 @@ import time
 
 TriggerName = '/home/sancere/NextonDisk_1/TimeTrigger/TTSegLale1'
 TimeCount = 0
-TimeThreshold = 3600*5
+TimeThreshold = 3600*0
 while os.path.exists(TriggerName) == False and TimeCount < TimeThreshold :
    time.sleep(60*5)
    TimeCount = TimeCount + 60*5
@@ -61,7 +61,7 @@ os.environ["CUDA_VISIBLE_DEVICES"]="1"
 # In[2]:
 
 
-basedir='/run/user/1000/gvfs/smb-share:server=isiserver.curie.net,share=u934/equipe_bellaiche/el_alpar/201105_DfdLife/ECadGFP' 
+basedir='/run/user/1000/gvfs/smb-share:server=isiserver.curie.net,share=u934/equipe_bellaiche/el_alpar/201221_ON_tollo-lateral' 
 
 basedirResults3D= basedir + '/Restored'
 basedirResults2D= basedir + '/Projected'
@@ -75,8 +75,8 @@ Model_Dir='/run/media/sancere/DATA/Lucas_Model_to_use/CARE/'
 # In[3]:
 
 
-RestorationModel = 'CARE_restoration_Borealis_Bin1'
-ProjectionModel ='CARE_projection_Borealis_Bin1'
+RestorationModel = 'CARE_restoration_SpinWideFRAP4_Bin1_3Gfp'
+ProjectionModel ='CARE_projection_SpinWideFRAP4_Bin1_3Gfp'
 
 RestorationModel = CARE(config = None, name = RestorationModel, basedir = Model_Dir)
 ProjectionModel = ProjectionCARE(config = None, name = ProjectionModel, basedir = Model_Dir) 

@@ -11,9 +11,9 @@ from __future__ import print_function, unicode_literals, absolute_import, divisi
 import os
 import time
 
-TriggerName = '/home/sancere/NextonDisk_1/TimeTrigger/TTAude1'
+TriggerName = '/home/sancere/NextonDisk_1/TimeTrigger/TTTEGEVUIVE'
 TimeCount = 0
-TimeThreshold = 3600*8
+TimeThreshold = 3600*0
 while os.path.exists(TriggerName) == False and TimeCount < TimeThreshold :
    time.sleep(60*5)
    TimeCount = TimeCount + 60*5
@@ -53,7 +53,7 @@ from skimage import exposure
 
 import time
 
-os.environ["CUDA_VISIBLE_DEVICES"]="1"
+os.environ["CUDA_VISIBLE_DEVICES"]="0"
 
 
 # **Movie 1**
@@ -61,7 +61,7 @@ os.environ["CUDA_VISIBLE_DEVICES"]="1"
 # In[2]:
 
 
-basedir='/run/user/1000/gvfs/smb-share:server=isiserver.curie.net,share=u934/equipe_bellaiche/m_gracia/20201216_-_compression_cad3xGFP_40x' 
+basedir='/run/user/1000/gvfs/smb-share:server=isiserver.curie.net,share=u934/equipe_bellaiche/m_gracia/20210316/partie1' 
 
 basedirResults3D= basedir + '/Restored'
 basedirResults2D= basedir + '/Projected'
@@ -74,8 +74,8 @@ Model_Dir='/run/media/sancere/DATA/Lucas_Model_to_use/CARE/'
 # In[3]:
 
 
-RestorationModel = 'CARE_restoration_Borealis_Bin2'
-ProjectionModel ='CARE_projection_Borealis_Bin2'
+RestorationModel = 'CARE_restoration_Borealis_Bin1'
+ProjectionModel ='CARE_projection_Borealis_Bin1'
 
 RestorationModel = CARE(config = None, name = RestorationModel, basedir = Model_Dir)
 ProjectionModel = ProjectionCARE(config = None, name = ProjectionModel, basedir = Model_Dir) 
@@ -96,7 +96,6 @@ filesRaw = glob.glob(Raw_path)
 
 # In[6]:
 
-
 for fname in filesRaw:
        if  os.path.exists(fname) == True :
             if  os.path.exists(basedirResults3Dextended + os.path.basename(fname)) == False or os.path.exists(basedirResults2Dextended + '_' + os.path.basename(fname)) == False :
@@ -106,7 +105,7 @@ for fname in filesRaw:
                 projection = ProjectionModel.predict(restored, axes, n_tiles = (1,1,1)) #n_tiles is for the decomposition of the image in (z,y,x). There is overlapping in the decomposition wich is managed by the program itself
                 axes_restored = axes.replace(ProjectionModel.proj_params.axis, '')
                 #restored = restored.astype('uint8') # if prediction and projection running at the same time
-                #restored = restored.astype('uint16') # if projection training set creation or waiting for a future projection 
+                restored = restored.astype('uint16') # if projection training set creation or waiting for a future projection 
                 projection = projection.astype('uint8')
                 save_tiff_imagej_compatible((basedirResults3Dextended  + os.path.basename(fname)) , restored, axes)
                 save_tiff_imagej_compatible((basedirResults2Dextended + '_' + os.path.basename(fname)) , projection, axes_restored)
