@@ -53,7 +53,7 @@ from skimage import exposure
 
 import time
 
-os.environ["CUDA_VISIBLE_DEVICES"]="1"
+os.environ["CUDA_VISIBLE_DEVICES"]="0"
 
 
 # **Movie 1**
@@ -61,7 +61,7 @@ os.environ["CUDA_VISIBLE_DEVICES"]="1"
 # In[2]:
 
 
-basedir='/run/user/1000/gvfs/smb-share:server=isiserver.curie.net,share=u934/equipe_bellaiche/el_alpar/201221_ON_tollo-lateral' 
+basedir='/run/user/1000/gvfs/smb-share:server=isiserver.curie.net,share=u934/equipe_bellaiche/el_alpar/210329_ON_ActTolloRNAi' 
 
 basedirResults3D= basedir + '/Restored'
 basedirResults2D= basedir + '/Projected'
@@ -85,7 +85,7 @@ ProjectionModel = ProjectionCARE(config = None, name = ProjectionModel, basedir 
 # In[5]:
 
 
-Path(basedirResults3D).mkdir(exist_ok = True)
+#Path(basedirResults3D).mkdir(exist_ok = True)
 Path(basedirResults2D).mkdir(exist_ok = True)
 
 Raw_path = os.path.join(basedir, '*TIF') #tif or TIF be careful

@@ -11,7 +11,7 @@ from __future__ import print_function, unicode_literals, absolute_import, divisi
 import os
 import time
 
-TriggerName = '/home/sancere/NextonDisk_1/TimeTrigger/TTSegYoAgain'
+TriggerName = '/home/sancere/NextonDisk_1/TimeTrigger/TTAude4'
 TimeCount = 0
 TimeThreshold = 3600*0
 while os.path.exists(TriggerName) == False and TimeCount < TimeThreshold :
@@ -53,7 +53,7 @@ from skimage import exposure
 
 import time
 
-os.environ["CUDA_VISIBLE_DEVICES"]="0"
+os.environ["CUDA_VISIBLE_DEVICES"]="1"
 
 
 # **Movie 1**
@@ -61,10 +61,10 @@ os.environ["CUDA_VISIBLE_DEVICES"]="0"
 # In[2]:
 
 
-basedir = '/run/user/1000/gvfs/smb-share:server=isiserver.curie.net,share=u934/equipe_bellaiche/a_maugarny-cales/20210326_Borealis' 
+basedir='/run/user/1000/gvfs/smb-share:server=isiserver.curie.net,share=u934/equipe_bellaiche/l_sancere/Boris_movies/LifeAct-GFP-resto2' 
 
-basedirResults3D=  basedir + '/Restored'
-basedirResults2D=  basedir + '/Projected'
+basedirResults3D= basedir + '/Restored'
+basedirResults2D= basedir + '/Projected'
 basedirResults3Dextended= basedirResults3D + '/Restored'
 basedirResults2Dextended= basedirResults2D + '/Projected'
 
@@ -74,8 +74,8 @@ Model_Dir='/run/media/sancere/DATA/Lucas_Model_to_use/CARE/'
 # In[3]:
 
 
-RestorationModel = 'CARE_restoration_Borealis_Bin2'
-ProjectionModel ='CARE_projection_Borealis_Bin2'
+RestorationModel = 'CARE_restoration_SpinWideFRAP4_Bin1'
+ProjectionModel ='CARE_projection_SpinWideFRAP4_Bin1'
 
 RestorationModel = CARE(config = None, name = RestorationModel, basedir = Model_Dir)
 ProjectionModel = ProjectionCARE(config = None, name = ProjectionModel, basedir = Model_Dir) 
@@ -84,10 +84,10 @@ ProjectionModel = ProjectionCARE(config = None, name = ProjectionModel, basedir 
 # In[5]:
 
 
-#Path(basedirResults3D).mkdir(exist_ok = True)
-Path(basedirResults2D).mkdir(exist_ok = True)
+Path(basedirResults3D).mkdir(exist_ok = True)
+#Path(basedirResults2D).mkdir(exist_ok = True)
 
-Raw_path = os.path.join(basedir, '*TIF') #tif or TIF be careful
+Raw_path = os.path.join(basedir, '*tif') #tif or TIF be careful
 
 axes = 'ZYX'  #projection axes : 'YX'
 
@@ -102,22 +102,25 @@ for fname in filesRaw:
             if  os.path.exists(basedirResults2Dextended + '_' + os.path.basename(fname)) == False :
                 print(fname)
                 y = imread(fname)
-                restored = RestorationModel.predict(y, axes, n_tiles = (1,2,4)) #n_tiles is for the decomposition of the image in (z,y,x). (1,2,2) will work with light images. Less tiles we have, faster the calculation is 
-                projection = ProjectionModel.predict(restored, axes, n_tiles = (1,1,1)) #n_tiles is for the decomposition of the image in (z,y,x). There is overlapping in the decomposition wich is managed by the program itself
+                restored = RestorationModel.predict(y, axes, n_tiles = (1,4,4)) #n_tiles is for the decomposition of the image in (z,y,x). (1,2,2) will work with light images. Less tiles we have, faster the calculation is 
+                projection = ProjectionModel.predict(restored, axes, n_tiles = (1,1,2)) #n_tiles is for the decomposition of the image in (z,y,x). There is overlapping in the decomposition wich is managed by the program itself
                 axes_restored = axes.replace(ProjectionModel.proj_params.axis, '')
                 restored = restored.astype('uint8') # if prediction and projection running at the same time
                 #restored = restored.astype('uint16') # if projection training set creation or waiting for a future projection 
                 projection = projection.astype('uint8')
-                #save_tiff_imagej_compatible((basedirResults3Dextended  + os.path.basename(fname)) , restored, axes)
-                save_tiff_imagej_compatible((basedirResults2Dextended + '_' + os.path.basename(fname)) , projection, axes_restored)
+                save_tiff_imagej_compatible((basedirResults3Dextended  + os.path.basename(fname)) , restored, axes)
+                #save_tiff_imagej_compatible((basedirResults2Dextended + '_' + os.path.basename(fname)) , projection, axes_restored)
 
 
+#Normal Images :                 restored = RestorationModel.predict(y, axes, n_tiles = (1,2,4)) 
+#                                projection = ProjectionModel.predict(restored, axes, n_tiles = (1,1,1)) 
+                
 # In[]:
 
 
 from csbdeep.utils import Path
 
-TriggerName = '/home/sancere/NextonDisk_1/TimeTrigger/TTAude4'
+TriggerName = '/home/sancere/NextonDisk_1/TimeTrigger/TTFloris1'
 Path(TriggerName).mkdir(exist_ok = True)
 
 

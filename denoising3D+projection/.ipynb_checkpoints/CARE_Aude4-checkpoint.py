@@ -61,7 +61,7 @@ os.environ["CUDA_VISIBLE_DEVICES"]="0"
 # In[2]:
 
 
-basedir = '/run/user/1000/gvfs/smb-share:server=isiserver.curie.net,share=u934/equipe_bellaiche/a_maugarny-cales/20210319_Borealis' 
+basedir = '/run/user/1000/gvfs/smb-share:server=isiserver.curie.net,share=u934/equipe_bellaiche/a_maugarny-cales/20210326_Borealis' 
 
 basedirResults3D=  basedir + '/Restored'
 basedirResults2D=  basedir + '/Projected'
@@ -75,7 +75,7 @@ Model_Dir='/run/media/sancere/DATA/Lucas_Model_to_use/CARE/'
 
 
 RestorationModel = 'CARE_restoration_Borealis_Bin2'
-ProjectionModel ='CARE_restoration_Borealis_Bin2'
+ProjectionModel ='CARE_projection_Borealis_Bin2'
 
 RestorationModel = CARE(config = None, name = RestorationModel, basedir = Model_Dir)
 ProjectionModel = ProjectionCARE(config = None, name = ProjectionModel, basedir = Model_Dir) 

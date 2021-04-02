@@ -1,4 +1,4 @@
-python CARE_Aude1.py
-python CARE_Aude2.py
-python CARE_Aude3.py
+
+python CARE_Lale1.py
 python CARE_Aude4.py
+python CARE_Aude6.py
