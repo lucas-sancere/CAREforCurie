@@ -53,7 +53,7 @@ from skimage import exposure
 
 import time
 
-os.environ["CUDA_VISIBLE_DEVICES"]="1"
+os.environ["CUDA_VISIBLE_DEVICES"]="0"
 
 
 # **Movie 1**
@@ -61,7 +61,7 @@ os.environ["CUDA_VISIBLE_DEVICES"]="1"
 # In[2]:
 
 
-basedir='/run/user/1000/gvfs/smb-share:server=isiserver.curie.net,share=u934/equipe_bellaiche/f_bosveld/CARING/shineG4_mmp2OE_bottom_29_mov4' 
+basedir='/run/user/1000/gvfs/smb-share:server=isiserver.curie.net,share=u934/equipe_bellaiche/f_bosveld/CARING/CycE-OE_ECadGFPki_3pre29_3' 
 
 #basedirResults3D= basedir + '/Restored'
 basedirResults2D= basedir + '/Projected'
@@ -74,8 +74,8 @@ Model_Dir='/run/media/sancere/DATA/Lucas_Model_to_use/CARE/'
 # In[3]:
 
 
-RestorationModel = 'CARE_restoration_SpinWideFRAP4_Bin1_3Kate_Lowlaser'
-ProjectionModel ='CARE_projection_SpinWideFRAP4_Bin1_3Kate_Lowlaser'
+RestorationModel = 'CARE_restoration_SpinWideFRAP4_Bin1'
+ProjectionModel ='CARE_projection_SpinWideFRAP4_Bin1'
 
 RestorationModel = CARE(config = None, name = RestorationModel, basedir = Model_Dir)
 ProjectionModel = ProjectionCARE(config = None, name = ProjectionModel, basedir = Model_Dir) 

@@ -53,7 +53,7 @@ from skimage import exposure
 
 import time
 
-os.environ["CUDA_VISIBLE_DEVICES"]="0"
+os.environ["CUDA_VISIBLE_DEVICES"]="1"
 
 
 # **Movie 1**
@@ -61,7 +61,7 @@ os.environ["CUDA_VISIBLE_DEVICES"]="0"
 # In[2]:
 
 
-basedir='/run/user/1000/gvfs/smb-share:server=isiserver.curie.net,share=u934/equipe_bellaiche/f_bosveld/CARING/shineG4_mmp2OE_bottom_29_1' 
+basedir='/run/user/1000/gvfs/smb-share:server=isiserver.curie.net,share=u934/equipe_bellaiche/f_bosveld/CARING/shineG4_mmp2OE_bottom_29_mov3' 
 
 #basedirResults3D= basedir + '/Restored'
 basedirResults2D= basedir + '/Projected'
