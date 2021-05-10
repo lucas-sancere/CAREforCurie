@@ -53,7 +53,7 @@ from skimage import exposure
 
 import time
 
-os.environ["CUDA_VISIBLE_DEVICES"]="1"
+os.environ["CUDA_VISIBLE_DEVICES"]="0"
 
 
 # **Movie 1**
@@ -61,7 +61,7 @@ os.environ["CUDA_VISIBLE_DEVICES"]="1"
 # In[2]:
 
 
-basedir='/run/user/1000/gvfs/smb-share:server=isiserver.curie.net,share=u934/equipe_bellaiche/el_alpar/210412_ON_ActTLRi' 
+basedir='/run/user/1000/gvfs/smb-share:server=isiserver.curie.net,share=u934/equipe_bellaiche/el_alpar/210507_ON_ActTLR-i_lateral' 
 
 basedirResults3D= basedir + '/Restored'
 basedirResults2D= basedir + '/Projected'
@@ -100,9 +100,10 @@ filesRaw = glob.glob(Raw_path)
 for fname in filesRaw:
         if  os.path.exists(fname) == True :
             if  os.path.exists(basedirResults2Dextended + '_' + os.path.basename(fname)) == False :
+                print(basedirResults2Dextended + '_' + os.path.basename(fname))
                 print(fname)
                 y = imread(fname)
-                restored = RestorationModel.predict(y, axes, n_tiles = (5,8,8))
+                restored = RestorationModel.predict(y, axes, n_tiles = (1,8,8))
                 #restored = RestorationModel.predict(y, axes, n_tiles = (1,4,8)) #n_tiles is for the decomposition of the image in (z,y,x). (1,2,2) will work with light images. Less tiles we have, faster the calculation is 
                 projection = ProjectionModel.predict(restored, axes, n_tiles = (1,4,4))
                 #projection = ProjectionModel.predict(restored, axes, n_tiles = (1,1,2)) #n_tiles is for the decomposition of the image in (z,y,x). There is overlapping in the decomposition wich is managed by the program itself
