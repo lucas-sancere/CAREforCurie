@@ -53,7 +53,7 @@ from skimage import exposure
 
 import time
 
-os.environ["CUDA_VISIBLE_DEVICES"]="1"
+os.environ["CUDA_VISIBLE_DEVICES"]="0"
 
 
 # **Movie 1**
@@ -61,7 +61,7 @@ os.environ["CUDA_VISIBLE_DEVICES"]="1"
 # In[2]:
 
 
-basedir='/run/user/1000/gvfs/smb-share:server=isiserver.curie.net,share=u934/equipe_bellaiche/mf_di-pietro/Florencia_to_Lucas/DegrFP-Data_for_segmentation-correction_or_measurement/27-8-8hr_after/Regions_of_interests_cropped/ToProject' 
+basedir='/run/user/1000/gvfs/smb-share:server=isiserver.curie.net,share=u934/equipe_bellaiche/mf_di-pietro/Florencia_to_Lucas/uas-trbl-ubiGal4MagHigh-12-5-21/s5' 
 
 basedirResults3D= basedir + '/Restored'
 basedirResults2D= basedir + '/Projected'
@@ -74,8 +74,8 @@ Model_Dir='/run/media/sancere/DATA/Lucas_Model_to_use/CARE/'
 # In[3]:
 
 
-RestorationModel = 'CARE_restoration_Borealis_Bin1'
-ProjectionModel ='CARE_projection_Borealis_Bin1'
+RestorationModel = 'CARE_restoration_Borealis_Bin2'
+ProjectionModel ='CARE_projection_Borealis_Bin2'
 
 RestorationModel = CARE(config = None, name = RestorationModel, basedir = Model_Dir)
 ProjectionModel = ProjectionCARE(config = None, name = ProjectionModel, basedir = Model_Dir) 
@@ -87,7 +87,7 @@ ProjectionModel = ProjectionCARE(config = None, name = ProjectionModel, basedir 
 Path(basedirResults3D).mkdir(exist_ok = True)
 Path(basedirResults2D).mkdir(exist_ok = True)
 
-Raw_path = os.path.join(basedir, '*.tif') #tif or TIF be careful
+Raw_path = os.path.join(basedir, '*.TIF') #tif or TIF be careful
 
 axes = 'ZYX'  #projection axes : 'YX'
 
@@ -105,9 +105,9 @@ for fname in filesRaw:
                 restored = RestorationModel.predict(y, axes, n_tiles = (1,2,4)) #n_tiles is for the decomposition of the image in (z,y,x). (1,2,2) will work with light images. Less tiles we have, faster the calculation is 
                 projection = ProjectionModel.predict(restored, axes, n_tiles = (1,1,1)) #n_tiles is for the decomposition of the image in (z,y,x). There is overlapping in the decomposition wich is managed by the program itself
                 axes_restored = axes.replace(ProjectionModel.proj_params.axis, '')
-                restored = restored.astype('uint8') # if prediction and projection running at the same time
+                #restored = restored.astype('uint8') # if prediction and projection running at the same time
                 #restored = restored.astype('uint16') # if projection training set creation or waiting for a future projection 
-                projection = projection.astype('uint8')
+                #projection = projection.astype('uint8')
                 #save_tiff_imagej_compatible((basedirResults3Dextended  + os.path.basename(fname)) , restored, axes)
                 save_tiff_imagej_compatible((basedirResults2Dextended + '_' + os.path.basename(fname)) , projection, axes_restored)
 

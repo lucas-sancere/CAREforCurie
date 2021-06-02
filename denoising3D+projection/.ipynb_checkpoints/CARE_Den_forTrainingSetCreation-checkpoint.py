@@ -61,19 +61,19 @@ os.environ["CUDA_VISIBLE_DEVICES"]="0"
 # In[2]:
 
 
-basedir='/run/user/1000/gvfs/smb-share:server=isiserver.curie.net,share=u934/equipe_bellaiche/l_sancere/Training_Data_Sets/Training_CARE_projection/SpinwideFRAP4_Training_CARE_40x_bin2_Reduced/Low' 
+basedir='/run/user/1000/gvfs/smb-share:server=isiserver.curie.net,share=u934/equipe_bellaiche/l_sancere/Training_Data_Sets/Training_CARE_projection/MariaTraining2_40x_bin2_Rfp/Low' 
 
 basedirResults3D= basedir + '/Restored'
 #basedirResults2D= basedir + '/Projected'
 basedirResults3Dextended= basedirResults3D + '/'
 #basedirResults2Dextended= basedirResults2D + '/Projected'
 
-Model_Dir='/run/media/sancere/DATA1/Lucas_Model_to_use/CARE/'
+Model_Dir='/run/media/sancere/DATA/Lucas_Model_to_use/CARE/'
 
 # In[3]:
 
 
-RestorationModel ='CARE_restoration_SpinWideFRAP4_Bin2_Reduced'
+RestorationModel ='CARE_restoration_Maria2_mKate_bin2'
 #ProjectionModel ='CARE_projection_Borealis_Bin1'
 
 RestorationModel = CARE(config = None, name = RestorationModel, basedir = Model_Dir)

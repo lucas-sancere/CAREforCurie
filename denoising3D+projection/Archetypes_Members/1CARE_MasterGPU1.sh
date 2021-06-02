@@ -1,4 +1,4 @@
 
+python CARE_Maria1_withdeletion_withoutcompression.py
+python CARE_Maria2_withdeletion_withoutcompression.py
 
-python CARE_Aude2.py
-python CARE_Aude3.py
