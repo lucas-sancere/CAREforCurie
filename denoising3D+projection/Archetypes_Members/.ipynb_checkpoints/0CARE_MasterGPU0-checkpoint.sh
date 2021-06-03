@@ -1,3 +1,3 @@
 
-python CARE_Victoire1.py
-python CARE_Victoire2.py
+python MasksPrediction.py
+python MasksPrediction-Copy1.py
