@@ -31,7 +31,7 @@ from csbdeep.utils import download_and_extract_zip_file, plot_some
 from csbdeep.data import RawData, create_patches
 import sys
 sys.path.append("../HelperFunctions")
-from selectrawdata_copyfromhelper import SelectRawData
+from selectrawdata_helper import SelectRawData
 
 
 # In[2]:

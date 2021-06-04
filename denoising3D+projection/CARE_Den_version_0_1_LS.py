@@ -11,12 +11,12 @@ from __future__ import print_function, unicode_literals, absolute_import, divisi
 #import os
 #import time
 
-#TriggerName = '/home/sancere/NextonDisk_1/TimeTrigger/TT3'
-#TimeCount = 0
-#TimeThreshold = 3600*2
-#while os.path.exists(TriggerName) == False and TimeCount < TimeThreshold :
-#   time.sleep(60*5)
-#   TimeCount = TimeCount + 60*5
+TriggerName = '/home/sancere/NextonDisk_1/TimeTrigger/TT3'
+TimeCount = 0
+TimeThreshold = 3600*2
+while os.path.exists(TriggerName) == False and TimeCount < TimeThreshold :
+   time.sleep(60*5)
+   TimeCount = TimeCount + 60*5
 
 
 
