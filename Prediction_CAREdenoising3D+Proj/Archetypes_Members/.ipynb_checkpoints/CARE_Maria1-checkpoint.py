@@ -11,12 +11,8 @@ from __future__ import print_function, unicode_literals, absolute_import, divisi
 import os
 import time
 
-TriggerName = '/home/sancere/NextonDisk_1/TimeTrigger/TTCAREMFGHJK'
-TimeCount = 0
-TimeThreshold = 3600*0
-while os.path.exists(TriggerName) == False and TimeCount < TimeThreshold :
-   time.sleep(60*5)
-   TimeCount = TimeCount + 60*5
+#hours=3600
+#time.sleep(2*hours)
 
 
 
@@ -53,7 +49,7 @@ from skimage import exposure
 
 import time
 
-os.environ["CUDA_VISIBLE_DEVICES"]="1"
+os.environ["CUDA_VISIBLE_DEVICES"]="0"
 
 
 # **Movie 1**
@@ -61,7 +57,7 @@ os.environ["CUDA_VISIBLE_DEVICES"]="1"
 # In[2]:
 
 
-basedir='/run/user/1000/gvfs/smb-share:server=isiserver.curie.net,share=u934/equipe_bellaiche/m_balakireva/Maria_Movie2Lucas/optoGC3aA1' 
+basedir='/run/user/1000/gvfs/smb-share:server=isiserver.curie.net,share=u934/equipe_bellaiche/m_balakireva/Maria_Movie2Lucas/ErkHis3iR2' 
 
 basedirResults3D= basedir + '/Restored'
 basedirResults2D= basedir + '/Projected'
@@ -74,8 +70,8 @@ Model_Dir='/run/media/sancere/DATA/Lucas_Model_to_use/CARE/'
 # In[3]:
 
 
-RestorationModel = 'CARE_restoration_SpinWideFRAP4_Bin1_3Gfp'
-ProjectionModel ='CARE_projection_SpinWideFRAP4_Bin1_3Gfp'
+RestorationModel = 'CARE_restoration_SpinWideFRAP4_Bin2_3iRfp_2'
+ProjectionModel ='CARE_projection_SpinWideFRAP4_Bin2_3Kate'
 
 RestorationModel = CARE(config = None, name = RestorationModel, basedir = Model_Dir)
 ProjectionModel = ProjectionCARE(config = None, name = ProjectionModel, basedir = Model_Dir) 
@@ -99,26 +95,20 @@ filesRaw = glob.glob(Raw_path)
 
 for fname in filesRaw:
        if  os.path.exists(fname) == True :
-            if  os.path.exists(basedirResults3Dextended + os.path.basename(fname)) == False or os.path.exists(basedirResults2Dextended + '_' + os.path.basename(fname)) == False :
+            if  os.path.exists(basedirResults3Dextended +  '_'  + os.path.basename(fname)) == False or os.path.exists(basedirResults2Dextended + '_' + os.path.basename(fname)) == False :
                 print(fname)
                 y = imread(fname)
                 restored = RestorationModel.predict(y, axes, n_tiles = (1,2,4)) #n_tiles is for the decomposition of the image in (z,y,x). (1,2,2) will work with light images. Less tiles we have, faster the calculation is 
                 projection = ProjectionModel.predict(restored, axes, n_tiles = (1,1,1)) #n_tiles is for the decomposition of the image in (z,y,x). There is overlapping in the decomposition wich is managed by the program itself
                 axes_restored = axes.replace(ProjectionModel.proj_params.axis, '')
-                restored = restored.astype('uint8') # if prediction and projection running at the same time
-                #restored = restored.astype('uint16') # if projection training set creation or waiting for a future projection 
-                projection = projection.astype('uint8')
-                save_tiff_imagej_compatible((basedirResults3Dextended  + os.path.basename(fname)) , restored, axes)
+                #restored = restored.astype('uint8') # if prediction and projection running at the same time
+                restored = restored.astype('uint16') # if projection training set creation or waiting for a future projection 
+                #projection = projection.astype('uint8')
+                save_tiff_imagej_compatible((basedirResults3Dextended  + '_' + os.path.basename(fname)) , restored, axes)
                 save_tiff_imagej_compatible((basedirResults2Dextended + '_' + os.path.basename(fname)) , projection, axes_restored)
 
 
 # In[]:
-
-
-from csbdeep.utils import Path
-
-TriggerName = '/home/sancere/NextonDisk_1/TimeTrigger/TTCAREMaria1'
-Path(TriggerName).mkdir(exist_ok = True)
 
 
 
