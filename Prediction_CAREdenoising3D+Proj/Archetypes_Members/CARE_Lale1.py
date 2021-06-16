@@ -61,7 +61,7 @@ os.environ["CUDA_VISIBLE_DEVICES"]="0"
 # In[2]:
 
 
-basedir='/run/user/1000/gvfs/smb-share:server=isiserver.curie.net,share=u934/equipe_bellaiche/el_alpar/210603_ON-Act8i_lateral' 
+basedir='/run/user/1000/gvfs/smb-share:server=isiserver.curie.net,share=u934/equipe_bellaiche/el_alpar/210609_ON_ActTolloRNAi_lateral' 
 
 basedirResults3D= basedir + '/Restored'
 basedirResults2D= basedir + '/Projected'
@@ -88,7 +88,7 @@ ProjectionModel = ProjectionCARE(config = None, name = ProjectionModel, basedir 
 #Path(basedirResults3D).mkdir(exist_ok = True)
 Path(basedirResults2D).mkdir(exist_ok = True)
 
-Raw_path = os.path.join(basedir, '*tif') #tif or TIF be careful
+Raw_path = os.path.join(basedir, '*TIF') #tif or TIF be careful
 
 axes = 'ZYX'  #projection axes : 'YX'
 
@@ -108,7 +108,7 @@ for fname in filesRaw:
                 projection = ProjectionModel.predict(restored, axes, n_tiles = (1,1,2))
                 #projection = ProjectionModel.predict(restored, axes, n_tiles = (1,1,2)) #n_tiles is for the decomposition of the image in (z,y,x). There is overlapping in the decomposition wich is managed by the program itself
                 axes_restored = axes.replace(ProjectionModel.proj_params.axis, '')
-                restored = restored.astype('uint8') # if prediction and projection running at the same time
+                #restored = restored.astype('uint8') # if prediction and projection running at the same time
                 #restored = restored.astype('uint16') # if projection training set creation or waiting for a future projection 
                 projection = projection.astype('uint8')
                 #save_tiff_imagej_compatible((basedirResults3Dextended  + os.path.basename(fname)) , restored, axes)
