@@ -116,12 +116,6 @@ for fname in filesRaw:
 #                                projection = ProjectionModel.predict(restored, axes, n_tiles = (1,1,1)) 
                 
 # In[]:
-
-
-from csbdeep.utils import Path
-
-TriggerName = '/home/sancere/NextonDisk_1/TimeTrigger/TTFloris1'
-Path(TriggerName).mkdir(exist_ok = True)
-
-
-
+#Here just to commit
+#Here just to commit
+#Here 
