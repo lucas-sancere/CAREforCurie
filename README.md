@@ -9,4 +9,5 @@ A comprehensive readme is to come.
 
 Lucas Sancéré / Varun Kappor / Cyril Kanatepakbong 
 
+No License -  all rights are reserved
 
