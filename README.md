@@ -5,8 +5,6 @@ CARE is the name of a network described in [this paper](https://www.nature.com/a
 
 Specificly for team Bellaiche analyses.
 
-A comprehensive readme is to come.
-
 Lucas Sancéré / Varun Kappor / Cyril Kanatepakbong 
 
 No License -  all rights are reserved
